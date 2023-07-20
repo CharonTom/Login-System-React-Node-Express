@@ -6,14 +6,14 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Login from "./pages/log-in/Login";
-import Signin from "./pages/sign-up/Signup";
-import "./style/main.scss";
+import Signup from "./pages/sign-up/Signup";
+import "./sass/main.scss";
 
 const rooter = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signin />} />
+      <Route path="/signup" element={<Signup />} />
     </>
   )
 );

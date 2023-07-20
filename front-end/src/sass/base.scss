@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  max-width: 1440px;
+  font-family: "Montserrat", sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0px;
+  padding: 10px;
+  background-color: lightblue;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0px;
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+}
