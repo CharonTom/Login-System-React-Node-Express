@@ -17,11 +17,11 @@ function Signup() {
         <h1>Create Account</h1>
 
         <div className="main__form__input">
-          <input type="text" name="UserId" placeholder="User ID" />
+          <input type="text" name="userId" placeholder="User ID" />
         </div>
 
         <div className="main__form__input">
-          <input type="email" name="UserId" placeholder="Email" />
+          <input type="email" name="email" placeholder="Email" />
         </div>
 
         <div className="main__form__input">
