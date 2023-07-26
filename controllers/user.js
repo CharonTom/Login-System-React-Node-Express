@@ -7,7 +7,7 @@ exports.signup = (req, res, next) => {
     .hash(req.body.password, 10) // hashage du mdp
     .then((hash) => {
       const user = new User({
-        userID: req.body.userID,
+        username: req.body.username,
         email: req.body.email,
         password: hash,
         date: req.body.date,
@@ -21,7 +21,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  User.findOne({ userID: req.body.userID })
+  User.findOne({ username: req.body.username })
     .then((user) => {
       if (!user) {
         return res.status(401).json({ message: `Can't find this user` });
@@ -44,4 +44,8 @@ exports.login = (req, res, next) => {
         .catch((error) => res.status(500).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));
+};
+
+exports.home = (req, res, next) => {
+  res.status(200).json({ message: "Bienvenue sur la home page" });
 };

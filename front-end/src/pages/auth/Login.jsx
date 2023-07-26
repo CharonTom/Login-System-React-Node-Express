@@ -4,24 +4,43 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 
-function Signup() {
+function Login() {
   const [toggle, setToggle] = useState(false);
 
   const showPassword = (e) => {
     e.preventDefault();
     setToggle(!toggle);
   };
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submitForm = (e) => {
+    e.preventDefault();
+
+    const initialValues = { username, password };
+
+    fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(initialValues),
+    });
+
+    console.log(initialValues);
+  };
+
   return (
     <div className="main">
-      <form className="main__form">
-        <h1>Create Account</h1>
+      <form className="main__form" onSubmit={submitForm}>
+        <h1>Login</h1>
 
         <div className="main__form__input">
-          <input type="text" name="userId" placeholder="User ID" />
-        </div>
-
-        <div className="main__form__input">
-          <input type="email" name="email" placeholder="Email" />
+          <input
+            type="text"
+            name="UserName"
+            placeholder="UserName"
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
 
         <div className="main__form__input">
@@ -32,18 +51,19 @@ function Signup() {
             type={toggle ? "text" : "password"}
             name="password"
             placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
         <button className="button" type="submit">
-          Create account
+          Login
         </button>
         <div>
-          Already registered ? <Link to={"/login"}>Login</Link>
+          You don't have an accound yet ? <Link to={"/signup"}>Sign up</Link>
         </div>
       </form>
     </div>
   );
 }
 
-export default Signup;
+export default Login;

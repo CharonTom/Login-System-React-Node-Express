@@ -9,8 +9,8 @@ import {
 } from "react-router-dom";
 
 import "./sass/main.scss";
-import Login from "./pages/log-in/Login";
-import Signup from "./pages/sign-up/Signup";
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
 import Home from "./pages/home/Home";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
