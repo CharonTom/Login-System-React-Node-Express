@@ -17,7 +17,6 @@ passwordSchema
   .has()
   .digits() // Must have at least 1 digit
   .has()
-  .not()
   .symbols();
 
 module.exports = passwordSchema;
