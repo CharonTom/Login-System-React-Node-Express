@@ -4,7 +4,7 @@ import axios from "axios";
 export const AuthContext = createContext();
 
 export const AuthcontextProvider = ({ children }) => {
-  const [formError, setFormError] = useState(false);
+  const [formError, setFormError] = useState("");
   const [successfullyLogin, setSuccessfullyLogin] = useState(false);
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
@@ -18,8 +18,16 @@ export const AuthcontextProvider = ({ children }) => {
         setSuccessfullyLogin(true);
       })
       .catch((error) => {
-        console.log(error);
-        setFormError(true);
+        if (error.response?.status === 429) {
+          if (
+            error.response?.data ===
+            "Too many requests, please try again later."
+          ) {
+            setFormError("Too many requests, please try again later.");
+          }
+        } else if (error.response?.status === 401) {
+          setFormError("Incorrect username or password");
+        }
       });
   };
 
@@ -29,7 +37,14 @@ export const AuthcontextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ successfullyLogin, currentUser, login, formError, setFormError }}
+      value={{
+        successfullyLogin,
+        currentUser,
+        login,
+        formError,
+        setFormError,
+        setCurrentUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

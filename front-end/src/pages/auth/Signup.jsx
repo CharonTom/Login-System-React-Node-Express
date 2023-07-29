@@ -74,7 +74,6 @@ function Signup() {
         setIsSubmit(true);
         setFormvalues(initialValues);
         setIsModalOpen(true);
-        console.log(isSubmit);
       } catch (error) {
         if (error.response?.status === 409) {
           // Code 409 indique un conflit, c'est-à-dire un doublon dans la base de données
@@ -104,7 +103,6 @@ function Signup() {
     setIsSubmit(false);
   };
 
-  console.log(isSubmit);
   return (
     <div className="main">
       {isModalOpen && Object.keys(formError).length === 0 && isSubmit && (

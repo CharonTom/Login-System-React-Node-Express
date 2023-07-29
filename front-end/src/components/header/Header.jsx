@@ -1,10 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 function Header() {
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  };
+
   return (
     <div>
-      <Link>Logout</Link>
+      <button className="button" onClick={handleLogout}>
+        Log out
+      </button>
     </div>
   );
 }

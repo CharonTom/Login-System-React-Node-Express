@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useState } from "react";
 import { AuthContext } from "../../context/authContext";
-import axios from "axios";
 
 function Login() {
   const initialValues = {
@@ -20,27 +18,31 @@ function Login() {
     setToggle(!toggle);
   };
 
-  const { successfullyLogin, currentUser, login, formError, setFormError } =
+  const { successfullyLogin, login, formError, setFormError } =
     useContext(AuthContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormvalues({ ...formValues, [name]: value });
-    setFormError(false);
+    setFormError("");
   };
-
-  const verifyinput = (formValues) => {};
 
   const handleForm = async (e) => {
     e.preventDefault();
 
     try {
       await login(formValues);
-      setFormError(false);
+      setFormError("");
     } catch (error) {
       console.log(error);
     }
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (successfullyLogin) navigate("/");
+  }, [successfullyLogin, navigate]);
 
   return (
     <div className="main">
@@ -69,9 +71,7 @@ function Login() {
             value={formValues.password}
           />
         </div>
-        {formError && (
-          <p className="main__form__error">Incorrect username or password</p>
-        )}
+        {formError && <p className="main__form__error">{formError}</p>}
         <button className="button" type="submit">
           Login
         </button>
