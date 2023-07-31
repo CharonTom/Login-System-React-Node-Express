@@ -7,7 +7,7 @@ function Header() {
   };
 
   return (
-    <div>
+    <div className="header">
       <button className="button" onClick={handleLogout}>
         Log out
       </button>

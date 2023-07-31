@@ -13,8 +13,9 @@ import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import Home from "./pages/home/Home";
 import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+//import Footer from "./components/footer/Footer";
 import { AuthContext } from "./context/authContext";
+import Error from "./pages/errorPage/errorPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -24,7 +25,6 @@ function App() {
       <>
         <Header />
         <Outlet />
-        <Footer />
       </>
     );
   };
@@ -51,6 +51,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<Error />} />
       </>
     )
   );
